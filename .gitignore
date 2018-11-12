@@ -1,0 +1,13 @@
+# Eclipse settings
+.settings/
+.metadata/
+.project
+.classpath
+.tern-project
+
+# Logs settings
+logs
+*.log
+
+# Miscellany settings
+.DS_Store
