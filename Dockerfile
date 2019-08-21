@@ -3,9 +3,9 @@ FROM alpine:3.8
 
 # Container configuration variables
 ARG CONDA_VERSION_MAJOR=4
-ARG CONDA_VERSION_MINOR=5
-ARG CONDA_VERSION_BUILD=12
-ARG CONDA_CHECKSUM="866ae9dff53ad0874e1d1a60b1ad1ef8"
+ARG CONDA_VERSION_MINOR=6
+ARG CONDA_VERSION_BUILD=14
+ARG CONDA_CHECKSUM="718259965f234088d785cad1fbd7de03"
 ARG GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc
 ARG GLIBC_VERSION=2.28-r0
 
@@ -30,7 +30,6 @@ RUN apk -U upgrade && \
     for exec in `ls ${CONDA_HOME}/bin`; do ln -s ${CONDA_HOME}/bin/${exec} /usr/local/bin/${exec}; done && \
     rm /tmp/miniconda.sh && \
     \
-    conda update --all --yes && \
     conda config --set auto_update_conda False && \
     rm -r "${CONDA_HOME}/pkgs/" && \
     \
