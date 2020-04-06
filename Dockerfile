@@ -1,11 +1,12 @@
 # Container definition
-FROM alpine:3.10
+FROM alpine:3.11
 
 # Container configuration variables
 ARG CONDA_VERSION_MAJOR=4
 ARG CONDA_VERSION_MINOR=7
-ARG CONDA_VERSION_BUILD=10
-ARG CONDA_CHECKSUM="1c945f2b3335c7b2b15130b1b2dc5cf4"
+ARG CONDA_VERSION_FIX=12
+ARG CONDA_VERSION_BUILD=1
+ARG CONDA_CHECKSUM="81c773ff87af5cfac79ab862942ab6b3"
 ARG GLIBC_REPO=https://github.com/sgerrand/alpine-pkg-glibc
 ARG GLIBC_VERSION=2.28-r0
 
@@ -24,7 +25,7 @@ RUN apk -U upgrade && \
     /usr/glibc-compat/sbin/ldconfig /lib /usr/glibc-compat/lib && \
     \
     mkdir -p "${CONDA_HOME}" && \
-    curl -o /tmp/miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-${CONDA_VERSION_MAJOR}.${CONDA_VERSION_MINOR}.${CONDA_VERSION_BUILD}-Linux-x86_64.sh" && \
+    curl -o /tmp/miniconda.sh "https://repo.continuum.io/miniconda/Miniconda3-${CONDA_VERSION_MAJOR}.${CONDA_VERSION_MINOR}.${CONDA_VERSION_FIX}.${CONDA_VERSION_BUILD}-Linux-x86_64.sh" && \
     echo "${CONDA_CHECKSUM}  /tmp/miniconda.sh" | md5sum -c && \
     bash /tmp/miniconda.sh -f -b -p "${CONDA_HOME}" && \
     for exec in `ls ${CONDA_HOME}/bin`; do ln -s ${CONDA_HOME}/bin/${exec} /usr/local/bin/${exec}; done && \
